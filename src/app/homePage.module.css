@@ -9,26 +9,3 @@
   flex-direction: column;
   gap: 5px;
 }
-
-.message {
-  background-color: var(--bgSofter);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  /* justify-content: space-between; */
-}
-
-.textContainer {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.sender {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.date {
-}
