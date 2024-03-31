@@ -1,3 +1,4 @@
+import { MdAdd } from "react-icons/md";
 import styles from "./sideBar.module.css"
 
 const  SideBar = () => {
@@ -5,7 +6,7 @@ const  SideBar = () => {
         <div className={styles.container}>
             <div className={styles.compose}>
                 نوشتن
-                {/* <MdAdd /> */}
+                <MdAdd size={30} />
 
             </div>
             <div className={styles.cats}>
