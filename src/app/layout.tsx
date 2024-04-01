@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthContextProvider } from "@/context/authContext";
 import { SocketContextProvider } from "@/context/socketContext";
 import { CookiesProvider } from "next-client-cookies/server";
+import ToastProvider from "@/providers/ToastProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,9 @@ export default function RootLayout({
         <CookiesProvider>
           <AuthContextProvider>
             <SocketContextProvider>
-              {children}
+              <ToastProvider>
+                {children}
+              </ToastProvider>
             </SocketContextProvider>
           </AuthContextProvider>
         </CookiesProvider>
