@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import styles from "./authPage.module.css"
+import { toast } from "react-toastify";
 
 const  authPage = () => {
     const [formInfo,setFormInfo] = useState({
@@ -12,23 +13,42 @@ const  authPage = () => {
     });
     const [canSubmit,setCanSubmit] = useState(true);
 
+    const [passwordError,setPasswordError] = useState<null | string>(null);
+
     useEffect(() => {
-        if (formInfo.confirmPassword !== formInfo.password) setCanSubmit(false)
+        if (formInfo.confirmPassword !== formInfo.password) {
+            setCanSubmit(false)
+        }
         else setCanSubmit(true)
     },[formInfo])
 
     type keysType = "email" | "username" | "password" | "confirmPassword";
-    const submitHandler = (e:FormEvent) => {
+    const submitHandler = async(e:FormEvent) => {
         e.preventDefault();
-        if (!canSubmit) return
+        if (!canSubmit) {
+            setPasswordError("رمز ها مطابقت ندارند");
+            return
+        }else setPasswordError(null);
         console.log("fetching...")
         setCanSubmit(false);
-        fetch(process.env.NEXT_PUBLIC_API+"/signup",{
+        await fetch(process.env.NEXT_PUBLIC_API+"/signup",{
             method:"POST",
-            body:JSON.stringify(formInfo)
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                email:formInfo.email,
+                username:formInfo.username,
+                password:formInfo.password,
+            })
         }).then((r) => {
             console.log(r);
-        })
+            if (!r.ok) {
+                r.status == 422 && toast.error("اطلاعات نادرست")
+                r.status == 403 && toast.error("ایمیل یا نام کاربری تکراری")
+            }
+            return r.json()
+        }).then(b=>{console.log(b)})
         setCanSubmit(true);
     };
     return (
@@ -94,6 +114,9 @@ const  authPage = () => {
                             })
                         }}
                     />
+                    <p className={styles.inputError}>
+                        {passwordError}
+                    </p>
                     <button className={styles.button}>
                         ثبت نام
                     </button>
