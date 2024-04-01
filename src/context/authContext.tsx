@@ -18,15 +18,16 @@ export const AuthContextProvider = ({ children }:{children:ReactNode}) => {
 
     const stringedUser = cookies.get("user");
 
-    hasToken 
-    && !stringedUser  
-    && fetch(process.env.NEXT_PUBLIC_API_URL+"/checkAuth").then((r)=>{
-        // setAuthUser(r)
-        console.log(r.headers.getSetCookie())
-    })
+    // hasToken 
+    // && !stringedUser  
+    // && 
+    // fetch(process.env.NEXT_PUBLIC_API+"/checkAuth").then((r)=>{
+    //     // setAuthUser(r)
+    //     console.log(r.headers.getSetCookie())
+    // })
 
 	const [authUser, setAuthUser] = useState(
-        !stringedUser ? JSON.parse(stringedUser as string) || null : null
+        stringedUser ? JSON.parse(stringedUser as string) || null : null
     );
 
     console.log("authuser state:",authUser);
