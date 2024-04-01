@@ -14,11 +14,22 @@ export const useAuthContext = () => {
 export const AuthContextProvider = ({ children }:{children:ReactNode}) => {
     const cookies = useCookies();
 
+    const hasToken = cookies.get("access_token") && true;
+
+    const stringedUser = cookies.get("user");
+
+    hasToken 
+    && !stringedUser  
+    && fetch(process.env.NEXT_PUBLIC_API_URL+"/checkAuth").then((r)=>{
+        // setAuthUser(r)
+        console.log(r.headers.getSetCookie())
+    })
+
 	const [authUser, setAuthUser] = useState(
-        JSON.parse(cookies.get("user") as string) || null
+        !stringedUser ? JSON.parse(stringedUser as string) || null : null
     );
 
-    console.log(authUser);
+    console.log("authuser state:",authUser);
 
 	return (
         <AuthContext.Provider value={{ authUser, setAuthUser }}>

@@ -17,11 +17,13 @@ export const SocketContextProvider = ({ children }:{children:ReactNode}) => {
 	useEffect(() => 
     {
 		if (authUser) {
-			const socket : Socket = io("https://chat-app-yt.onrender.com", {
+			const socket : Socket = io(process.env.NEXT_PUBLIC_API_URL as string, {
 				query: {
 					userId: authUser._id,
 				},
 			});
+
+            console.log("socket :",socket);
 
 			setSocket(socket);
 
