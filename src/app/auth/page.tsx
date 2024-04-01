@@ -40,6 +40,7 @@ const  authPage = () => {
                 <form className={styles.form} onSubmit={submitHandler}>
                     <input className={styles.input} 
                         placeholder="ایمیل"type="email" 
+                        required
                         name="email"
                         onChange={(e) => {
                             setFormInfo(prev  => {
@@ -52,6 +53,7 @@ const  authPage = () => {
                         }}
                     />
                     <input className={styles.input}
+                        required
                         placeholder="نام کاربری" type="username"
                         name="username"
                         onChange={(e) => {
@@ -65,6 +67,7 @@ const  authPage = () => {
                         }}
                     />
                     <input className={styles.input}
+                        required
                         placeholder="رمز عبور"type="password"
                         name="password"
                         onChange={(e) => {
@@ -78,6 +81,7 @@ const  authPage = () => {
                         }}
                     />
                     <input className={styles.input} 
+                        required
                         placeholder="دوباره رمز عبور" type="password"
                         name="confirmPassword"
                         onChange={(e) => {
