@@ -11,6 +11,13 @@
     font-weight: bold;
 }
 
+.switch {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
 .wrapper {
     padding: 20px;
     width: 35%;
