@@ -58,6 +58,9 @@ const authPage = () => {
                 }
             };
             toast.success("اکانت ایومیل شما با موفقیت ایجاد شد");
+            return r.json()
+        }).then((body) => {
+            localStorage.setItem("user",JSON.stringify(body.user));
         }).catch((err:{
             message:string
         }) => {
