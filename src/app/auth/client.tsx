@@ -10,7 +10,7 @@ const Client = () => {
     const signupSwitch = "قبلا ثبت نام کردی ؟ ";
     const loginSwitch = "هنوز ثبت نام نکردی؟";
 
-    const {replace} = useRouter();
+    const {replace,push} = useRouter();
     
     const searchParams = useSearchParams();
     
@@ -33,8 +33,8 @@ const Client = () => {
                 </p>
                 {
                     authMode === "signup" 
-                    ? <SignupForm />
-                    : <LoginForm />
+                    ? <SignupForm pushFunc={push}/>
+                    : <LoginForm  pushFunc={push}/>
                 }
                 <p className={styles.switch} onClick={handleSwitch}>
                     {

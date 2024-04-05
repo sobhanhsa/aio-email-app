@@ -1,9 +1,12 @@
 import { toast } from "react-toastify";
 import styles from "./loginForm.module.css"
 import { FormEvent, useEffect, useState } from "react";
-import { redirect } from "next/navigation";
 
-const  SignupForm = () => {
+const  LoginForm = ({
+    pushFunc
+}:{
+    pushFunc:(route:string)=>void
+}) => {
     
     const [formInfo,setFormInfo] = useState({
         emailOrUsername:"",
@@ -57,7 +60,7 @@ const  SignupForm = () => {
             return r.json()
         }).then((body) => {
             localStorage.setItem("user",JSON.stringify(body.user));
-            redirect("/");
+            pushFunc("/");
         }).catch((err:{
             message:string
         }) => {
@@ -112,4 +115,4 @@ const  SignupForm = () => {
     )
 };
 
-export default SignupForm;
+export default LoginForm;

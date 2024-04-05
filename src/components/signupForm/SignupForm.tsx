@@ -2,7 +2,11 @@ import { toast } from "react-toastify";
 import styles from "./SignupForm.module.css"
 import { FormEvent, useEffect, useState } from "react";
 
-const  SignupForm = () => {
+const  SignupForm = ({
+    pushFunc
+}:{
+    pushFunc:(route:string)=>void
+}) => {
     
     const [formInfo,setFormInfo] = useState({
         email:"",
@@ -57,6 +61,7 @@ const  SignupForm = () => {
             return r.json()
         }).then((body) => {
             localStorage.setItem("user",JSON.stringify(body.user));
+            pushFunc("/");
         }).catch((err:{
             message:string
         }) => {
