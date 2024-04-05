@@ -3,6 +3,7 @@
 import SignupForm from "@/components/signupForm/SignupForm";
 import styles from "./authPage.module.css"
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import LoginForm from "@/components/loginForm/LoginForm";
 
 const Client = () => {
 
@@ -30,7 +31,11 @@ const Client = () => {
                 <p className={styles.title}>
                     به ایومیل خوش اومدی
                 </p>
-                <SignupForm />
+                {
+                    authMode === "signup" 
+                    ? <SignupForm />
+                    : <LoginForm />
+                }
                 <p className={styles.switch} onClick={handleSwitch}>
                     {
                         authMode === "signup" ? signupSwitch : loginSwitch
