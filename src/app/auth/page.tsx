@@ -1,10 +1,13 @@
 "use client"
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import styles from "./authPage.module.css"
 import { toast } from "react-toastify";
+import { AuthContext } from "@/context/authContext";
 
-const  authPage = () => {
+
+const authPage = () => {
+    
     const [formInfo,setFormInfo] = useState({
         email:"",
         username:"",
@@ -29,26 +32,41 @@ const  authPage = () => {
             setPasswordError("رمز ها مطابقت ندارند");
             return
         }else setPasswordError(null);
-        console.log("fetching...")
+        console.log("fetching...");
         setCanSubmit(false);
         await fetch(process.env.NEXT_PUBLIC_API+"/signup",{
             method:"POST",
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: "include",
             body:JSON.stringify({
                 email:formInfo.email,
                 username:formInfo.username,
                 password:formInfo.password,
             })
         }).then((r) => {
-            console.log(r);
+            console.log("first then",r);
             if (!r.ok) {
-                r.status == 422 && toast.error("اطلاعات نادرست")
-                r.status == 403 && toast.error("ایمیل یا نام کاربری تکراری")
+                switch (r.status) {
+                    case 422 :
+                        throw new Error("اطلاعات نادرست")
+                    case 403 :
+                        throw new Error("ایمیل یا نام کاربری تکراری")
+                    default:
+                        throw new Error("از سمت سرور خطایی رخ داد")
+                }
+            };
+            toast.success("اکانت ایومیل شما با موفقیت ایجاد شد");
+        }).catch((err:{
+            message:string
+        }) => {
+            let finalMessage = err.message;
+            if (err.message.toUpperCase() === "FAILED TO FETCH") {
+                finalMessage = "شکست در برقراری ارتباط";
             }
-            return r.json()
-        }).then(b=>{console.log(b)})
+            toast.error(finalMessage);
+        })
         setCanSubmit(true);
     };
     return (
