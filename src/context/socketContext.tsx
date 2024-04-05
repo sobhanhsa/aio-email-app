@@ -17,7 +17,7 @@ export const SocketContextProvider = ({ children }:{children:ReactNode}) => {
 	useEffect(() => 
     {
 		if (authUser) {
-			const socket : Socket = io(process.env.NEXT_PUBLIC_API_URL as string, {
+			const socket : Socket = io(process.env.NEXT_PUBLIC_API as string, {
 				query: {
 					userId: authUser._id,
 				},
