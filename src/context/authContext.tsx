@@ -21,7 +21,7 @@ export const AuthContextProvider = ({ children }:{children:ReactNode}) => {
         stringedUser ? JSON.parse(stringedUser as string) || null : null
     );
 
-    console.log("authuser state:",authUser);
+    // console.log("authuser state:",authUser);
 
 	return (
         <AuthContext.Provider value={{ authUser, setAuthUser }}>
