@@ -34,7 +34,7 @@ const  SignupForm = ({
         }else setPasswordError(null);
         console.log("fetching...");
         setCanSubmit(false);
-        await fetch(process.env.NEXT_PUBLIC_API+"/signup",{
+        await fetch(process.env.NEXT_PUBLIC_API+"user/signup",{
             method:"POST",
             headers: {
                 'Content-Type': 'application/json'
