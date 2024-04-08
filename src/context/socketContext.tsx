@@ -22,7 +22,8 @@ export const SocketContextProvider = ({ children }:{children:ReactNode}) => {
 					userId: authUser._id,
 				},
 			});
-
+			
+			console.log("user id : ",authUser._id);
             console.log("socket :",socket);
 
 			setSocket(socket);
