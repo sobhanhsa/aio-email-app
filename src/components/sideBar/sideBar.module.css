@@ -1,6 +1,6 @@
 .container {
     flex: 1;
-    background-color: var(--bgSoft);
+    background-color: var(--bgSofter);
     padding: 20px;
     display: flex;
     flex-direction: column;

@@ -1,14 +1,15 @@
 
 
 .container {
-    background-color: var(--bgSofter);
+    background-color: var(--bg);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
     /* justify-content: space-between; */
+    border-bottom: 1px solid var(--bgSoft);
 }
-  
+
 .textContainer {
     display: flex;
     align-items: center;
