@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import styles from "./message.module.css"
 
 type MessageComponentProps = {
@@ -11,20 +12,22 @@ type MessageComponentProps = {
 
 const  Message = (props:MessageComponentProps) => {
     return (
-        <div className={styles.container} key={props.id}>
-            <div className={styles.textContainer}>
-                <p className={styles.sender}>
-                    {props.sender}
-                </p>
-                :
-                <p className={styles.subject}>
-                    {props.subject}
+        <Link href={"/"+props.id} key={props.id}>
+            <div className={styles.container}>
+                <div className={styles.textContainer}>
+                    <p className={styles.sender}>
+                        {props.sender}
+                    </p>
+                    :
+                    <p className={styles.subject}>
+                        {props.subject}
+                    </p>
+                </div>
+                <p className={styles.date}>
+                    {props.date}
                 </p>
             </div>
-            <p className={styles.date}>
-                {props.date}
-            </p>
-        </div>
+        </Link>
     )
 };
 
