@@ -6,7 +6,7 @@ interface useMessagesState {
     setMessages: (messages: MessageType[]) => void
 }
 
-export const useBearStore = create<useMessagesState>()((set) => ({
+export const useMessagesStore = create<useMessagesState>()((set) => ({
     messages: [],
     setMessages: (messages:MessageType[]) => set({messages}),
 }))
