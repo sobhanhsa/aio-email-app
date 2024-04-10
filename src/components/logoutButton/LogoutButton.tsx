@@ -3,12 +3,12 @@
 import { IoLogOutOutline } from "react-icons/io5";
 import styles from "./logoutButton.module.css";
 import { useContext } from "react";
-import { AuthContext } from "@/context/authContext";
+import { AuthContext, useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 
 const LogoutButton  = () => {
     const router = useRouter();
-    const {authUser,setAuthUser} = useContext(AuthContext);
+    const {authUser,setAuthUser} = useAuthContext();
     const clickHandler = async() => {
         setAuthUser(null);
         await fetch(process.env.NEXT_PUBLIC_API + "/user/logout",{
