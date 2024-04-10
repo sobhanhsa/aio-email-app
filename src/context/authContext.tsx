@@ -21,6 +21,8 @@ export const AuthContextProvider = ({ children }:{children:ReactNode}) => {
         stringedUser ? JSON.parse(stringedUser as string) || null : null
     );
 
+    typeof window !== "undefined" && !authUser && localStorage.removeItem("user");
+
     // console.log("authuser state:",authUser);
 
 	return (
