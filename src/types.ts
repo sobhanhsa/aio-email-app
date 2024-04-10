@@ -13,7 +13,7 @@ export type MessageType = {
     createdAt:Date,
     updatedAt:Date,
     receivers:(string | UserType)[],
-    sender:string | UserType,
+    sender:UserType,
     subject:string,
     body:string,
     isReplied:boolean,
