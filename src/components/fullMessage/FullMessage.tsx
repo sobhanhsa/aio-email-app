@@ -1,5 +1,6 @@
 import { MessageType, UserType } from "@/types";
 import styles from "./fullMessage.module.css"
+import { MutableRefObject } from "react";
 
 type props = {
     message:MessageType,
@@ -7,11 +8,15 @@ type props = {
         user:UserType,
         role:"sender"|"receiver"
     }
+    selectedRef:null|MutableRefObject<any>
 }
 
 const  FullMessage = (props:props) => {
     return (
-        <div className={styles.container} key={props.message._id}>
+        <div 
+            className={`${styles.container} ${props.selectedRef ? styles.selected : ""}`} 
+            key={props.message._id} ref={props.selectedRef}
+        >
             <p className={styles.subject}>
                 {props.message.subject}
             </p>
