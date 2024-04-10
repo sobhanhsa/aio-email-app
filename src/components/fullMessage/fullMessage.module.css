@@ -1,1 +1,16 @@
-.container {}
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 100px 50px;
+    border-bottom: 1px solid var(--bgSoft);
+}
+
+.subject {
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.secondaryPerson {
+    font-size: 20px;
+    color: gray;
+}

@@ -4,6 +4,7 @@ import { useMessagesStore } from "@/store/useMessages";
 import styles from "./SelectedMessagesSinglePage.module.css"
 import { MessageType, UserType } from "@/types";
 import { useAuthContext } from "@/context/authContext";
+import FullMessage from "@/components/fullMessage/FullMessage";
 
 const  SelectedMessagesSinglePage = ({params}:{
     params:{
@@ -30,11 +31,22 @@ const  SelectedMessagesSinglePage = ({params}:{
     return (
         <div className={styles.container}>
             {
-                relatedMessages.map(msg => (
-                    <div>
-                        عنوان:{msg.subject}
-                    </div>
-                ))
+                relatedMessages.map(msg => {
+                    // secondary person role!
+                    const sPRole = msg.sender === secondaryPerson 
+                        ? "sender"
+                        : "receiver"
+                    return (
+                        <FullMessage
+                            key={msg._id}
+                            message={msg}
+                            secondaryPerson={{
+                                user:secondaryPerson,
+                                role:sPRole
+                            }}
+                        />
+                    )
+                })
             }
         </div>
     )
