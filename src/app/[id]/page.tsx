@@ -5,6 +5,7 @@ import styles from "./SelectedMessagesSinglePage.module.css"
 import { MessageType, UserType } from "@/types";
 import { useAuthContext } from "@/context/authContext";
 import FullMessage from "@/components/fullMessage/FullMessage";
+import { useEffect, useRef } from "react";
 
 const  SelectedMessagesSinglePage = ({params}:{
     params:{
@@ -17,7 +18,7 @@ const  SelectedMessagesSinglePage = ({params}:{
         return (<div>
             چنین پیامی وجود ندارد
         </div>)
-    }
+    };
     const {authUser}:{authUser:UserType} = useAuthContext();
     const secondaryPerson : UserType = selectedMessage?.sender !== authUser 
     ? selectedMessage.sender
@@ -26,8 +27,17 @@ const  SelectedMessagesSinglePage = ({params}:{
         return ( msg.sender._id === secondaryPerson._id 
             || msg.receivers[0]._id === secondaryPerson._id) 
     });
-    console.log("singlePage :",secondaryPerson);
-    console.log("singlePage-messages :",messages);
+
+    const selectedMassageRef = useRef(null);
+
+    // console.log("singlePage :",secondaryPerson);
+    // console.log("singlePage-messages :",messages);
+    
+    useEffect(()=> {
+        (selectedMassageRef.current as any)
+            ?.scrollIntoView({ behavior: "instant" , block:"center"});
+    },[]);
+
     return (
         <div className={styles.container}>
             {
@@ -44,6 +54,7 @@ const  SelectedMessagesSinglePage = ({params}:{
                                 user:secondaryPerson,
                                 role:sPRole
                             }}
+                            selectedRef={msg._id === params.id ? selectedMassageRef : null}
                         />
                     )
                 })
