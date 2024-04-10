@@ -8,9 +8,10 @@ export const useListenMessages = () => {
     const {messages,setMessages} = useMessagesStore();
 
     useEffect(() => {
-        socket.on("newMessage",(newMessage:MessageType) => {
-            setMessages([...messages,newMessage]);
+        socket?.on("newMessage",(newMessage:MessageType) => {
+            messages.unshift(newMessage);
+            setMessages([...messages]);
         });
-        return () => socket.off("newMessage")
+        return () => socket?.off("newMessage")
     },[socket,messages,setMessages])
 }
