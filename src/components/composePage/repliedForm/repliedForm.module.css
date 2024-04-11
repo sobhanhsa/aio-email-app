@@ -1,0 +1,41 @@
+
+.container {
+    padding: 20px;
+    width: 35%;
+    min-height: 85%;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    /* gap: 50px; */
+    /* justify-content: center; */
+    gap: 20px;
+}
+
+.EmailInput {
+    padding: 20px;
+    border: 1px solid var(--bgSoft);
+    border-radius: 10px;
+    font-size: 20px;
+    direction: ltr;
+}
+
+.EmailInput::placeholder {
+    
+    text-align: right;
+    direction: rtl;
+}
+
+.input {
+    padding: 20px;
+    border: 1px solid var(--bgSoft);
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.body {
+    resize: none;
+    padding: 10px;
+    border: 1px solid var(--bgSoft);
+    border-radius: 10px;
+    font-size: 20px;
+}
