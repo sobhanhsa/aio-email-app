@@ -1,68 +1,39 @@
-"use client"
-
-import SendButton from "@/components/sendButton/SendButton";
+import RepliedForm from "@/components/composePage/repliedForm/RepliedForm";
 import styles from "./composePage.module.css"
-import { useSendMessage } from "@/hooks/useSendMessage";
-import { ChangeEvent, FormEvent, useState } from "react";
 
-const  ComposePage = () => {
-    const {sendMessage,isLoading} = useSendMessage();
-    const [formInfo,setFormInfo] = useState({
-        receivers:[],
-        subject:"",
-        body:""
-    });
+import RegularForm from "@/components/composePage/Form/RegularForm";
 
-    type FormKeysType = "receivers" | "body" | "subject";
+const  ComposePage = async({
+    searchParams
+}:{
+    searchParams?: { [key: string]: string | string[] | undefined }
+}) => {
 
-    const inputOnChange = (e:ChangeEvent<any>) => {
-        setFormInfo(prev  => {
-            if (Array.isArray(prev[e.target.name as FormKeysType])) {
-                (prev[e.target.name as FormKeysType] as any[]) = [e.target.value];
-            } else {
-                prev[e.target.name as FormKeysType] = e.target.value;
-            }
-            console.log(prev)
-            return {
-                ...prev
-            }
-        })
-    };
+    const isReplied = (
+        searchParams?.isReplied &&
+        searchParams?.repliedTo && true
+    ) ?? false;
 
+    //ref-message id
+    const repliedTo = searchParams?.repliedTo;
 
-    const onSubmit = (e:FormEvent) => {
-        e.preventDefault();
-        sendMessage(formInfo);
-    };
-
-    console.log(formInfo)
+    let refMessage = isReplied 
+        ? (await fetch(process.env.NEXT_PUBLIC_API+"/message/"+repliedTo) as any)
+            .reqMessage
+        : null;
+    // console.log("compose-server-component : ",isReplied);
 
     return (
         <div className={styles.container}>
-            <form className={styles.wrapper} onSubmit={onSubmit}>
-                <input className={styles.EmailInput} 
-                    required
-                    name="receivers"
-                    type="email"
-                    placeholder="به" 
-                    onChange={inputOnChange}
-                />
-                <input className={styles.input} 
-                    required
-                    type="text"
-                    name="subject"
-                    placeholder="موضوع" 
-                    onChange={inputOnChange}
-                />
-                <textarea className={styles.body}
-                    required
-                    name="body"
-                    rows={10}
-                    placeholder="متن" 
-                    onChange={inputOnChange}
-                />  
-                <SendButton  isLoading={isLoading}/>
-            </form>
+            {
+                !isReplied && !repliedTo
+                ? (
+                    <RegularForm />
+                )
+                : (     
+                    <RepliedForm refMessage={refMessage}/>
+                )
+            }
         </div>
     )
 };
