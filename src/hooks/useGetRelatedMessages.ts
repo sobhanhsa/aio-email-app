@@ -10,7 +10,7 @@ export const useGetRelatedMessages = (id:string) => {
     const getRelatedMessages = async (id:string) => {
         setLoading(true);
         try {
-            const res = await fetch(process.env.NEXT_PUBLIC_API+"/message/"+id,{
+            const res = await fetch(process.env.NEXT_PUBLIC_API+"/message/related/"+id,{
                 credentials:"include"
             });
             if (!res.ok) throw new Error(res.status.toString());
