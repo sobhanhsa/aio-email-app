@@ -11,6 +11,12 @@
     
 }
 
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .selected {
     animation: blink;
     animation-duration: 2250ms;

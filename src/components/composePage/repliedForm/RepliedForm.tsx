@@ -6,27 +6,23 @@ import SendButton from "@/components/sendButton/SendButton";
 import { MessageType, UserType } from "@/types";
 
 import { useSendMessage } from "@/hooks/useSendMessage";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useAuthContext } from "@/context/authContext";
+import { useGetMessage } from "@/hooks/useGetMessage";
 
-const  RepliedForm = ({refMessage}:{refMessage:MessageType|null}) => {
+const  RepliedForm = ({id}:{id:string}) => {
     // if this component renders
     // we are sure that we have "RepliedTo" query
 
-    const searchParams = useSearchParams();
-    const repliedMsgId = searchParams.get("repliedTo");
+    const {message:refMessage,loading:getLoading,secondaryPerson}:{
+        message:MessageType|null,
+        loading:boolean,   
+        secondaryPerson:UserType|null
+    } = useGetMessage(id);
 
-    if (!refMessage) {
-        throw new Error("refmessage is null");
-    }
-
-    const {authUser}:{authUser:UserType} = useAuthContext();
-
-    const secondaryPerson : UserType= refMessage.sender._id.toString() === authUser._id.toString()
-        ? refMessage.receivers[0]
-        : refMessage.sender;
     const {sendMessage,isLoading} = useSendMessage();
+
     const [formInfo,setFormInfo] = useState({
         subject:"",
         body:""
@@ -49,7 +45,7 @@ const  RepliedForm = ({refMessage}:{refMessage:MessageType|null}) => {
 
     const onSubmit = (e:FormEvent) => {
         e.preventDefault();
-        sendMessage({
+        secondaryPerson && refMessage && sendMessage({
             ...formInfo,
             receivers:[secondaryPerson.email],
             isReplied:true,
@@ -59,7 +55,9 @@ const  RepliedForm = ({refMessage}:{refMessage:MessageType|null}) => {
 
     return (
         <form className={styles.container} onSubmit={onSubmit}>
-            
+            <div>
+                {refMessage?.subject}
+            </div>
             <input className={styles.input} 
                 required
                 type="text"

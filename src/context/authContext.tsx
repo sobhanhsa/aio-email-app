@@ -23,7 +23,7 @@ export const AuthContextProvider = ({ children }:{children:ReactNode}) => {
 
     typeof window !== "undefined" && !authUser && localStorage.removeItem("user");
 
-    // console.log("authuser state:",authUser);
+    console.log("authuser state:",authUser);
 
 	return (
         <AuthContext.Provider value={{ authUser, setAuthUser }}>

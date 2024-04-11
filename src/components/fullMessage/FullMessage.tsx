@@ -1,6 +1,7 @@
 import { MessageType, UserType } from "@/types";
 import styles from "./fullMessage.module.css"
 import { MutableRefObject } from "react";
+import ReplyButton from "../replyButton/ReplyButton";
 
 type props = {
     message:MessageType,
@@ -17,9 +18,12 @@ const  FullMessage = (props:props) => {
             className={`${styles.container} ${props.selectedRef ? styles.selected : ""}`} 
             key={props.message._id} ref={props.selectedRef}
         >
-            <p className={styles.subject}>
-                {props.message.subject}
-            </p>
+            <div className={styles.head}>
+                <p className={styles.subject}>
+                    {props.message.subject}
+                </p>
+                <ReplyButton id={props.message._id}/>
+            </div>
             <p className={styles.date}>
                 {props.message.createdAt?.toString().split("T")}
             </p>

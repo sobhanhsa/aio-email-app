@@ -1,0 +1,9 @@
+.container {
+    padding: 12px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.container:hover {
+    background-color: var(--bgSofter);
+}

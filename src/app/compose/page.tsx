@@ -17,12 +17,7 @@ const  ComposePage = async({
     //ref-message id
     const repliedTo = searchParams?.repliedTo;
 
-    let refMessage = isReplied 
-        ? (await fetch(process.env.NEXT_PUBLIC_API+"/message/"+repliedTo) as any)
-            .reqMessage
-        : null;
     // console.log("compose-server-component : ",isReplied);
-
     return (
         <div className={styles.container}>
             {
@@ -31,7 +26,7 @@ const  ComposePage = async({
                     <RegularForm />
                 )
                 : (     
-                    <RepliedForm refMessage={refMessage}/>
+                    <RepliedForm id={repliedTo as string}/>
                 )
             }
         </div>
