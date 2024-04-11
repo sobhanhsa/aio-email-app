@@ -1,0 +1,14 @@
+.container {
+    padding: 20px 10px;
+    width: 100%;
+    min-height: 20px;
+    background-color: var(--bgSofter);
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.sub {
+    font-style: italic;
+    text-decoration: underline;
+    color: rgb(26, 24, 24);
+}

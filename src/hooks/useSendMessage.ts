@@ -12,7 +12,7 @@ export const useSendMessage = () =>{
     const [isLoading,setIsLoading] = useState(false);
     const sendMessage = async(props:props) => {
         setIsLoading(true);
-        const body = props.isReplied && props.repliedTo
+        const body = !props.isReplied && !props.repliedTo
         ?   {
             subject:props.subject,
             body:props.body,

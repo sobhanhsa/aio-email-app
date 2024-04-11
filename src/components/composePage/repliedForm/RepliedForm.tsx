@@ -10,6 +10,7 @@ import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useAuthContext } from "@/context/authContext";
 import { useGetMessage } from "@/hooks/useGetMessage";
+import RefMessage from "@/components/refMessage/RefMessage";
 
 const  RepliedForm = ({id}:{id:string}) => {
     // if this component renders
@@ -55,9 +56,7 @@ const  RepliedForm = ({id}:{id:string}) => {
 
     return (
         <form className={styles.container} onSubmit={onSubmit}>
-            <div>
-                {refMessage?.subject}
-            </div>
+            <RefMessage message={refMessage} />
             <input className={styles.input} 
                 required
                 type="text"
