@@ -5,8 +5,14 @@ import styles from "./logoutButton.module.css";
 import { useContext } from "react";
 import { AuthContext, useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
+import { SlLogout } from "react-icons/sl";
+import { BiLogOut } from "react-icons/bi";
 
-const LogoutButton  = () => {
+const LogoutButton  = ({
+    size
+}:{
+    size:number
+}) => {
     const router = useRouter();
     const {authUser,setAuthUser} = useAuthContext();
     const clickHandler = async() => {
@@ -19,7 +25,7 @@ const LogoutButton  = () => {
     };
     return (
         <div className={styles.container} onClick={clickHandler}>
-            <IoLogOutOutline size={35}/>
+            <BiLogOut  size={size} />
         </div>
     )
 };
