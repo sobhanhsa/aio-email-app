@@ -1,0 +1,11 @@
+.container {
+    width: 100%;
+    direction: ltr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background-color: var(--bgSofter);
+    position: sticky;
+    top:0px;
+}

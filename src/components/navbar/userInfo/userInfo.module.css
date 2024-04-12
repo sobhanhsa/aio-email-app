@@ -1,0 +1,22 @@
+.container {
+    cursor: pointer;
+
+    color: white;
+    font-size: 16px;
+    direction: ltr;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 100px;
+
+    background-color: #020202;
+    max-height: min-content;
+
+}
+
+.username {
+    user-select: none;
+    font-weight: bold;
+}
