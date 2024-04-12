@@ -13,23 +13,6 @@ const  SelectedMessagesSinglePage = ({params}:{
         id:string
     }
 }) => {
-    // const {messages} = useMessagesStore();
-    // const selectedMessage = messages.find(msg => msg._id === params.id);
-    // if (!selectedMessage) {
-    //     return (<div>
-    //         چنین پیامی وجود ندارد
-    //     </div>)
-    // };
-    // const {authUser}:{authUser:UserType} = useAuthContext();
-    // const secondaryPerson : UserType = selectedMessage?.sender !== authUser 
-    // ? selectedMessage.sender
-    // : selectedMessage.receivers[0];
-    // const relatedMessages = messages.filter((msg:MessageType) => {
-    //         return ( msg.sender._id === secondaryPerson._id 
-    //             || msg.receivers[0]._id === secondaryPerson._id) 
-    //     });
-        
-        
     const selectedMassageRef = useRef(null);
 
     const {
