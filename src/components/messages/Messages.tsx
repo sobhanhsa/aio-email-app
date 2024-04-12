@@ -17,6 +17,7 @@ const  Messages = () => {
             {
                 messages.map((msg:MessageType) => (
                     <Message
+                        isReplied={msg.isReplied}
                         id={msg._id}
                         key={msg._id}
                         sender={msg.sender.username}
