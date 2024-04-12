@@ -10,7 +10,7 @@ import Navbar from "@/components/navbar/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AIO main",
+  title: "AIOmail",
   description: "developed with ❤️",
 };
 
@@ -22,18 +22,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CookiesProvider>
-          <AuthContextProvider>
-            <SocketContextProvider>
-              <ToastProvider>
-                <div className="wrapper">
-                  <Navbar />
-                  {children}
-                </div>
-              </ToastProvider>
-            </SocketContextProvider>
-          </AuthContextProvider>
-        </CookiesProvider>
+        <AuthContextProvider>
+          <SocketContextProvider>
+            <ToastProvider>
+              <div className="wrapper">
+                <Navbar />
+                {children}
+              </div>
+            </ToastProvider>
+          </SocketContextProvider>
+        </AuthContextProvider>
       </body>
     </html>
   );

@@ -1,18 +1,21 @@
 import { MdMoveToInbox } from "react-icons/md";
 import styles from "./navbar.module.css"
-import UserInfo from "./userInfo/UserInfo";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const NOSSRUserInfo = dynamic(
+    () => import('./userInfo/UserInfo'), { ssr: false }
+);
+
 
 const  Navbar = () => {
     return (
-        <>
-            <div className={styles.container}>
-                <UserInfo />
-                <Link href="/">
-                    <MdMoveToInbox size={25} />
-                </Link>
-            </div>
-        </>
+        <div className={styles.container}>
+            <NOSSRUserInfo />
+            <Link href="/">
+                <MdMoveToInbox size={25} />
+            </Link>
+        </div>
     )
 };
 

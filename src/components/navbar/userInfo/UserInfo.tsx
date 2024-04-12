@@ -13,23 +13,15 @@ const  UserInfo = () => {
 
     return (
         <>
-            {
-                authUser 
-                && 
-                (
-                    <div className={styles.container} onClick={() => {setIsOpen(p => !p)}}>
-                        <FaUser size={15} className={styles.userIcon}/>
+            <div className={styles.container} onClick={() =>setIsOpen(p => !p)}>
+                <FaUser size={15} className={styles.userIcon}/>
 
-                        <p className={styles.username}>
-                            {authUser.username}
-                        </p>
-                        {/* <p className={styles.email}>
-                            sobhan@me.com
-                        </p> */}
-                        {isOpen && <LogoutButton size={20}/>}   
-                    </div>
-                )
-            }
+                <p className={styles.username}>
+                    {authUser?.username}
+                </p>
+            
+                {isOpen && <LogoutButton size={20}/>}   
+            </div>
         </>
     )
 };
