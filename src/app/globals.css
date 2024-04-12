@@ -10,7 +10,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  direction: rtl;
 }
 
 a {
@@ -22,4 +21,13 @@ a {
   font-family: Vazir;
   src: url(/fonts/Vazir.ttf );
   weight: 400
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  /* overflow-y: hidden; */
+  direction: rtl;
+
 }
