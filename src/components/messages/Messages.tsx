@@ -22,7 +22,7 @@ const  Messages = () => {
                         key={msg._id}
                         sender={msg.sender.username}
                         subject={msg.subject}
-                        date={"12324"||msg.createdAt}
+                        date={msg.createdAt.toString().slice(0,10)}
                     />
                 ))
             }
