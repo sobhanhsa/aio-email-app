@@ -1,12 +1,12 @@
 .container {
     flex: 1;
-    background-color: var(--bgSofter);
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
     height: 100vh;
+    background-color: #e7e7e7;
 }
 
 .compose {
